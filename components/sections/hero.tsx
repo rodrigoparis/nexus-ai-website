@@ -11,15 +11,15 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Background Image with Ken Burns Effect */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 animate-fadeIn">
         <Image
           src="/images/hero/hero-background.png"
           alt="Fondo abstracto de IA"
           fill
-          className="object-cover animate-kenburns"
+          className="object-cover animate-kenburns object-[center_75%] scale-110 animate-scaleDown"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-transparent opacity-0 animate-fadeInDelay" />
       </div>
 
       <Container className="relative z-10">

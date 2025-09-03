@@ -245,4 +245,33 @@
   .animate-kenburns {
     animation: kenburns 30s ease-in-out infinite;
   }
+
+  /* Hero background animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleDown {
+    from { transform: scale(1.1); }
+    to { transform: scale(1); }
+  }
+
+  @keyframes fadeInDelay {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .animate-scaleDown {
+    animation: scaleDown 1s ease-out forwards;
+  }
+
+  .animate-fadeInDelay {
+    animation: fadeInDelay 2s ease-out forwards;
+  }
 }

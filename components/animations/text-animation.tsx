@@ -39,47 +39,32 @@ const child = {
 }
 
 export function WordByWordAnimation({ text, className = [], delay = 0 }: TextAnimationProps) {
-  // Calculate segment boundaries
-  const segments = text.reduce<{ text: string; class: string; start: number; end: number }[]>(
-    (acc, segment, index) => {
-      const start = acc.length ? acc[acc.length - 1].end + 1 : 0 // +1 for space
-      return [
-        ...acc,
-        {
-          text: segment,
-          class: className[index] || "",
-          start,
-          end: start + segment.length
-        }
-      ]
-    },
-    []
-  )
-
-  // Join all text parts with spaces and split into characters
-  const characters = text.join(" ").split("")
+  // Split the text into words
+  const words = text[0].split(" ")
+  
+  // Define which words should have the gradient style
+  const shouldHaveGradient = (word: string) => {
+    return word === "Automatizado" || word === "con" || word === "IA"
+  }
   
   return (
-    <motion.span
+    <motion.div
       variants={container}
       initial="hidden"
       animate="visible"
       custom={delay}
+      className="inline-flex flex-nowrap"
     >
-      {characters.map((char, i) => {
-        // Find which segment this character belongs to
-        const segment = segments.find(seg => i >= seg.start && i <= seg.end)
-        
-        return (
-          <motion.span
-            key={i}
-            className={`inline-block ${segment?.class || ""}`}
-            variants={child}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        )
-      })}
-    </motion.span>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          variants={child}
+          className={`inline-block ${shouldHaveGradient(word) ? "luxury-gradient-text" : ""}`}
+        >
+          {word}
+          {i < words.length - 1 ? "\u00A0" : ""}
+        </motion.span>
+      ))}
+    </motion.div>
   )
 }
