@@ -26,12 +26,9 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           <div className="space-y-8">
             <FadeInUp>
-              <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 leading-none tracking-tight">
-                <WordByWordAnimation 
-                  text={["Tu Negocio,", "Automatizado con IA"]}
-                  className={["", "luxury-gradient-text whitespace-nowrap"]}
-                  delay={0.2}
-                />
+              <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 leading-none tracking-tight flex flex-col gap-2">
+                <div>Tu Negocio,</div>
+                <div className="luxury-gradient-text">Automatizado con IA</div>
               </h1>
             </FadeInUp>
 
