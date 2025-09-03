@@ -1,4 +1,4 @@
-import type * as React from "react"
+import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300",
         primary:
-          "bg-teal-500 text-white shadow-md hover:bg-teal-600 hover:-translate-y-0.5 hover:shadow-lg focus-visible:ring-teal-500/20 font-semibold",
+          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-primary/20 font-semibold transition-all duration-300",
         secondary:
-          "bg-gray-100 text-gray-900 shadow-md hover:bg-gray-200 hover:-translate-y-0.5 hover:shadow-lg focus-visible:ring-gray-500/20 font-semibold",
+          "bg-transparent border border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5 focus-visible:ring-primary/20 font-semibold transition-all duration-300",
         outline:
-          "border-2 border-teal-500 bg-transparent text-teal-500 shadow-md hover:bg-teal-500 hover:text-white hover:-translate-y-0.5 hover:shadow-lg focus-visible:ring-teal-500/20 font-semibold transition-all duration-300",
+          "border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-accent/20 font-semibold transition-all duration-300",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 transition-colors duration-300",
+        ghost: "hover:bg-accent hover:text-accent-foreground transition-colors duration-300",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -35,19 +35,25 @@ const buttonVariants = cva(
   },
 )
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot : "button"
-
-  return <Comp data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props} />
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
 }
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+
+Button.displayName = "Button"
 
 export { Button, buttonVariants }

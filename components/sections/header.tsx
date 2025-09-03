@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
@@ -17,17 +17,31 @@ const navigation = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="bg-nexus-surface border-b border-nexus-text-secondary/20 sticky top-0 z-50 backdrop-blur-sm">
+    <header 
+      className={`sticky top-0 z-50 border-b border-border/20 transition-colors duration-200 ${
+        scrolled ? 'bg-background/95 backdrop-blur-md' : 'bg-background/80 backdrop-blur-sm'
+      }`}
+    >
       <Container>
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-nexus-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">N</span>
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">N</span>
             </div>
-            <span className="font-display font-bold text-xl text-nexus-text-primary">Nexus AI</span>
+            <span className="font-display font-bold text-xl text-foreground">Nexus AI</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,7 +50,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-nexus-text-secondary hover:text-nexus-text-primary transition-colors duration-200 font-medium"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
               >
                 {item.name}
               </Link>
@@ -53,7 +67,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden p-2 text-nexus-text-secondary hover:text-nexus-text-primary transition-colors"
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Abrir menú"
           >
@@ -63,13 +77,13 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-nexus-text-secondary/20">
+          <div className="md:hidden py-4 border-t border-border/20">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-nexus-text-secondary hover:text-nexus-text-primary transition-colors duration-200 font-medium py-2"
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}

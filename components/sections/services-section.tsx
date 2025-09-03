@@ -1,4 +1,7 @@
+'use client'
+
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
 import { BrainIcon } from "@/components/icons/brain"
@@ -13,15 +16,16 @@ import { ClockIcon } from "@/components/icons/clock"
 import { DollarSignIcon } from "@/components/icons/dollar-sign"
 import { ShieldIcon } from "@/components/icons/shield"
 import { InfinityIcon } from "@/components/icons/infinity"
-import { FadeInUp } from "@/components/animations/fade-in-up"
-import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
+import { ScrollAnimation } from "@/components/animations/scroll-animation"
+import { StaggeredScrollAnimation } from "@/components/animations/scroll-animation"
+import { HoverAnimation } from "@/components/animations/hover-animation"
 import { getServices } from "@/lib/data"
 
 const iconMap = {
   brain: BrainIcon,
   chart: ChartIcon,
   robot: RobotIcon,
-}
+} as const
 
 const keywordIconMap = {
   zap: ZapIcon,
@@ -33,7 +37,7 @@ const keywordIconMap = {
   "dollar-sign": DollarSignIcon,
   shield: ShieldIcon,
   infinity: InfinityIcon,
-}
+} as const
 
 export function ServicesSection() {
   const services = getServices()
@@ -41,7 +45,7 @@ export function ServicesSection() {
   return (
     <section className="py-20 lg:py-32 bg-gray-900">
       <Container>
-        <FadeInUp className="text-center mb-16">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="font-display font-bold text-3xl md:text-5xl text-gray-50 mb-6 text-balance">
             Nuestros Servicios Especializados
           </h2>
@@ -49,14 +53,23 @@ export function ServicesSection() {
             Ofrecemos soluciones de IA de vanguardia diseñadas para transformar su negocio y generar resultados
             medibles.
           </p>
-        </FadeInUp>
+        </ScrollAnimation>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggeredScrollAnimation className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service) => {
-            const IconComponent = iconMap[service.icon as keyof typeof iconMap]
+            const IconComponent = service.icon in iconMap ? iconMap[service.icon as keyof typeof iconMap] : RobotIcon
             return (
-              <StaggerItem key={service.id}>
-                <div className="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-teal-500/30 transition-all duration-300 group h-full">
+              <motion.div
+                key={service.id}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 20 }
+                }}
+              >
+                <HoverAnimation 
+                  className="bg-gray-800 rounded-xl p-8 border border-gray-700 group h-full"
+                  glowColor="rgba(20, 184, 166, 0.2)"
+                >
                   <div className="mb-6">
                     <div className="w-16 h-16 bg-teal-500/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal-500/20 transition-colors">
                       <IconComponent className="w-8 h-8 text-teal-400" />
@@ -66,7 +79,7 @@ export function ServicesSection() {
 
                     <div className="grid grid-cols-3 gap-4 mb-6">
                       {service.iconKeywords.map((item, index) => {
-                        const KeywordIcon = keywordIconMap[item.icon as keyof typeof keywordIconMap]
+                        const KeywordIcon = item.icon in keywordIconMap ? keywordIconMap[item.icon as keyof typeof keywordIconMap] : ZapIcon
                         return (
                           <div key={index} className="text-center">
                             <div className="w-10 h-10 bg-teal-500/10 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-teal-500/20 transition-colors">
@@ -83,17 +96,17 @@ export function ServicesSection() {
                   <Button variant="outline" size="sm" asChild>
                     <Link href={`/services/${service.slug}`}>Saber Más</Link>
                   </Button>
-                </div>
-              </StaggerItem>
+                </HoverAnimation>
+              </motion.div>
             )
           })}
-        </StaggerContainer>
+        </StaggeredScrollAnimation>
 
-        <FadeInUp delay={0.4} className="text-center mt-12">
+        <ScrollAnimation delay={0.4} className="text-center mt-12">
           <Button variant="primary" size="lg" asChild>
             <Link href="/services">Ver Todos los Servicios</Link>
           </Button>
-        </FadeInUp>
+        </ScrollAnimation>
       </Container>
     </section>
   )

@@ -51,51 +51,51 @@ export interface Insight {
 export const services: Service[] = [
   {
     id: "1",
-    slug: "machine-learning",
-    title: "Machine Learning & IA",
-    description: "Desarrollamos modelos de ML personalizados que transforman sus datos en insights accionables.",
+    slug: "automation-workflows",
+    title: "Automation Workflows",
+    description: "Diseñamos flujos de trabajo inteligentes que eliminan tareas repetitivas y maximizan la productividad.",
     detailedDescription:
-      "Nuestro equipo de expertos en machine learning diseña e implementa soluciones de IA personalizadas que se adaptan perfectamente a las necesidades específicas de su negocio. Desde algoritmos de predicción hasta sistemas de recomendación avanzados.",
+      "Creamos sistemas de automatización que manejan tareas repetitivas, minimizan errores y permiten a tu equipo enfocarse en el crecimiento estratégico. Nuestras soluciones se adaptan a tus procesos existentes y escalan con tu negocio.",
     iconKeywords: [
-      { icon: "zap", keyword: "Automatización" },
-      { icon: "target", keyword: "Precisión" },
-      { icon: "trending-up", keyword: "Optimización" },
+      { icon: "zap", keyword: "Velocidad" },
+      { icon: "shield", keyword: "Precisión" },
+      { icon: "infinity", keyword: "Escalable" },
     ],
-    technologies: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "AWS SageMaker"],
-    image: "/images/services/machine-learning.jpg",
-    icon: "brain",
+    technologies: ["UiPath", "Power Automate", "Python", "API Integration", "Custom AI"],
+    image: "/images/services/automation.jpg",
+    icon: "robot",
   },
   {
     id: "2",
-    slug: "data-analytics",
-    title: "Análisis de Datos Avanzado",
-    description: "Convertimos datos complejos en estrategias empresariales claras y accionables.",
+    slug: "process-optimization",
+    title: "Process Optimization",
+    description: "Optimizamos operaciones empresariales usando IA para identificar y eliminar ineficiencias.",
     detailedDescription:
-      "Transformamos grandes volúmenes de datos en insights estratégicos que impulsan la toma de decisiones informadas. Utilizamos técnicas avanzadas de análisis para descubrir patrones ocultos y oportunidades de crecimiento.",
+      "Analizamos tus operaciones actuales y aplicamos IA para identificar cuellos de botella, mejorar la eficiencia y generar resultados medibles. Transformamos procesos complejos en flujos de trabajo optimizados.",
     iconKeywords: [
-      { icon: "bar-chart", keyword: "Dashboards" },
-      { icon: "search", keyword: "Insights" },
-      { icon: "clock", keyword: "Tiempo Real" },
+      { icon: "trending-up", keyword: "Eficiencia" },
+      { icon: "target", keyword: "Resultados" },
+      { icon: "dollar-sign", keyword: "Ahorro" },
     ],
-    technologies: ["Power BI", "Tableau", "Python", "R", "SQL", "Apache Spark"],
+    technologies: ["Process Mining", "AI Analytics", "Workflow Automation", "Business Intelligence"],
     image: "/images/services/data-analytics.jpg",
     icon: "chart",
   },
   {
     id: "3",
-    slug: "automation",
-    title: "Automatización Inteligente",
-    description: "Implementamos soluciones de RPA e IA para optimizar sus procesos empresariales.",
+    slug: "custom-ai",
+    title: "Custom AI Solutions",
+    description: "Desarrollamos soluciones de IA personalizadas que automatizan decisiones complejas.",
     detailedDescription:
-      "Diseñamos e implementamos sistemas de automatización inteligente que combinan RPA con IA para optimizar procesos empresariales complejos, reducir errores humanos y aumentar la eficiencia operacional.",
+      "Creamos sistemas de IA que automatizan la toma de decisiones, predicen tendencias y optimizan recursos. Nuestras soluciones se integran perfectamente con tus sistemas existentes para maximizar el ROI.",
     iconKeywords: [
-      { icon: "dollar-sign", keyword: "Ahorro" },
-      { icon: "shield", keyword: "Confiabilidad" },
-      { icon: "infinity", keyword: "Escalabilidad" },
+      { icon: "brain", keyword: "Inteligente" },
+      { icon: "clock", keyword: "Automático" },
+      { icon: "bar-chart", keyword: "Medible" },
     ],
-    technologies: ["UiPath", "Blue Prism", "Automation Anywhere", "Python", "API Integration"],
-    image: "/images/services/automation.jpg",
-    icon: "robot",
+    technologies: ["TensorFlow", "PyTorch", "AWS", "Azure AI", "Custom Models"],
+    image: "/images/services/machine-learning.jpg",
+    icon: "brain",
   },
 ]
 
@@ -103,12 +103,12 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "1",
     slug: "retail-optimization",
-    title: "Optimización de Inventario con IA",
+    title: "AI Workflow Improves Inventory Availability by 92%",
     client: "RetailMax Corp",
     challenge:
-      "La empresa enfrentaba problemas de sobrestock y desabastecimiento, generando pérdidas millonarias y clientes insatisfechos.",
+      "Pérdidas millonarias por gestión manual de inventario: exceso de stock en algunos productos y faltantes en otros.",
     solution:
-      "Implementamos un sistema de predicción de demanda basado en ML que analiza patrones históricos, tendencias estacionales y factores externos para optimizar niveles de inventario.",
+      "Automatización inteligente del proceso de inventario que predice la demanda y ajusta los niveles de stock automáticamente.",
     results: [
       { metric: "Reducción de costos de inventario", value: "35%" },
       { metric: "Mejora en disponibilidad de productos", value: "92%" },
@@ -116,18 +116,18 @@ export const caseStudies: CaseStudy[] = [
       { metric: "Tiempo de implementación", value: "4 meses" },
     ],
     technologies: ["Python", "TensorFlow", "AWS", "PostgreSQL", "React"],
-    bannerImage: "/images/case-studies/retail-optimization-banner.jpg",
+    bannerImage: "/images/Gemini_Generated_Image_e0mavle0mavle0ma.png",
     featured: true,
   },
   {
     id: "2",
     slug: "financial-fraud-detection",
-    title: "Sistema de Detección de Fraude Financiero",
+    title: "Automation Reduces Financial Fraud by 99.2%",
     client: "SecureBank",
     challenge:
-      "El banco necesitaba un sistema en tiempo real para detectar transacciones fraudulentas sin afectar la experiencia del cliente legítimo.",
+      "Pérdidas significativas por fraudes y alta tasa de falsos positivos que afectaban la experiencia del cliente.",
     solution:
-      "Desarrollamos un sistema de ML en tiempo real que analiza patrones de transacciones y comportamiento del usuario para identificar actividades sospechosas con alta precisión.",
+      "Sistema automatizado de detección que evalúa transacciones en tiempo real y toma decisiones instantáneas con alta precisión.",
     results: [
       { metric: "Detección de fraudes", value: "99.2%" },
       { metric: "Reducción de falsos positivos", value: "78%" },
@@ -135,7 +135,7 @@ export const caseStudies: CaseStudy[] = [
       { metric: "Ahorro anual estimado", value: "$2.5M" },
     ],
     technologies: ["Python", "Apache Kafka", "Redis", "MongoDB", "Docker"],
-    bannerImage: "/images/case-studies/fraud-detection-banner.jpg",
+    bannerImage: "/images/Gemini_Generated_Image_e0mavle0mavle0ma (1).png",
     featured: true,
   },
 ]
