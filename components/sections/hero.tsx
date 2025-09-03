@@ -28,8 +28,8 @@ export function Hero() {
             <FadeInUp>
               <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-foreground mb-6 leading-none tracking-tight">
                 <WordByWordAnimation 
-                  text={["Tu Negocio,", "Automatizado", "con IA"]}
-                  className={["", "luxury-gradient-text whitespace-nowrap", "luxury-gradient-text"]}
+                  text={["Tu Negocio,", "Automatizado con IA"]}
+                  className={["", "luxury-gradient-text whitespace-nowrap"]}
                   delay={0.2}
                 />
               </h1>
